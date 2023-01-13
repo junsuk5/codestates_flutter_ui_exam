@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_flutter2/data/model/photo.dart';
+import 'package:hello_flutter2/ui/search/search_view_model.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -9,23 +10,15 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<Photo> photos = [
-    Photo(
-      url:
-          'https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et_400x400.jpg',
-      description: '아이유',
-    ),
-    Photo(
-      url:
-      'https://dimg.donga.com/wps/NEWS/IMAGE/2022/11/11/116428366.2.jpg',
-      description: '아이유 2',
-    ),
-    Photo(
-      url:
-      'https://assets.repress.co.kr/photos/2009ea104d2c842fed5461308d9f92d7/original.jpg',
-      description: '아이유 3',
-    ),
-  ];
+  final viewModel = SearchViewModel();
+
+  final textController = TextEditingController();
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +32,34 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             TextField(
+              controller: textController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.teal),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 hintText: 'Search',
-                suffixIcon: const Icon(Icons.search),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () async {
+                    setState(() {
+                      viewModel.isLoading = true;
+                    });
+
+                    print('확인!!!! : ${textController.text}');
+                    await viewModel.search('아이유');
+
+                    // 렌더링 다시
+                    setState(() {
+                      viewModel.isLoading = false;
+                    });
+                  },
+                ),
                 suffixStyle: const TextStyle(color: Colors.green),
               ),
             ),
             const SizedBox(height: 16),
+            if (viewModel.isLoading) const CircularProgressIndicator(),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -57,9 +67,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                 ),
-                itemCount: photos.length,
+                itemCount: viewModel.photos.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final photo = photos[index];
+                  final photo = viewModel.photos[index];
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.network(
