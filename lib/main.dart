@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter2/ui/search/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const HomeScreen(),
+      home: const SearchScreen(),
     );
   }
 }
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('UI 연습'),
+        title: const Text('UI 연습'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -43,8 +44,8 @@ class HomeScreen extends StatelessWidget {
               child: _titleWidget(),
             ),
             _iconsWidget(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf'),
             ),
           ],
@@ -60,22 +61,22 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 '제목!!!!!',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              SizedBox(height: 10),
-              Text('부 제목!!!!!'),
+              const SizedBox(height: 10),
+              const Text('부 제목!!!!!'),
             ],
           ),
         ),
         Row(
           children: [
-            Icon(Icons.star, color: Colors.red),
-            Text('41'),
+            const Icon(Icons.star, color: Colors.red),
+            const Text('41'),
           ],
         ),
       ],
@@ -90,20 +91,20 @@ class HomeScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              Icon(Icons.call, color: Colors.cyan),
-              Text('CALL', style: TextStyle(color: Colors.cyan)),
+              const Icon(Icons.call, color: Colors.cyan),
+              const Text('CALL', style: TextStyle(color: Colors.cyan)),
             ],
           ),
           Column(
             children: [
-              Icon(Icons.call, color: Colors.cyan),
-              Text('CALL', style: TextStyle(color: Colors.cyan)),
+              const Icon(Icons.call, color: Colors.cyan),
+              const Text('CALL', style: TextStyle(color: Colors.cyan)),
             ],
           ),
           Column(
             children: [
-              Icon(Icons.call, color: Colors.cyan),
-              Text('CALL', style: TextStyle(color: Colors.cyan)),
+              const Icon(Icons.call, color: Colors.cyan),
+              const Text('CALL', style: TextStyle(color: Colors.cyan)),
             ],
           ),
         ],
