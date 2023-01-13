@@ -1,7 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter2/data/model/photo.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  List<Photo> photos = [
+    Photo(
+      url:
+          'https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et_400x400.jpg',
+      description: '아이유',
+    ),
+    Photo(
+      url:
+      'https://dimg.donga.com/wps/NEWS/IMAGE/2022/11/11/116428366.2.jpg',
+      description: '아이유 2',
+    ),
+    Photo(
+      url:
+      'https://assets.repress.co.kr/photos/2009ea104d2c842fed5461308d9f92d7/original.jpg',
+      description: '아이유 3',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +57,13 @@ class SearchScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                 ),
-                itemCount: 3,
+                itemCount: photos.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final photo = photos[index];
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.network(
-                      'https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et_400x400.jpg',
+                      photo.url,
                       fit: BoxFit.cover,
                     ),
                   );
