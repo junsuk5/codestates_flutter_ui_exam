@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   icon: const Icon(Icons.search),
                   onPressed: () async {
                     print('확인!!!! : ${textController.text}');
-                    await viewModel.search('아이유');
+                    await viewModel.search(textController.text);
                   },
                 ),
                 suffixStyle: const TextStyle(color: Colors.green),
